@@ -16,7 +16,7 @@ nav {
   
   nav ul {
     list-style-type: none;
-    /* padding: 0; */
+    padding: 10; 
   }
   
   nav ul li {
@@ -33,15 +33,22 @@ nav {
   /* Basic CSS for the form elements */
   body {
     font-family: Arial, sans-serif;
-    /* margin: 20px; */
+    /*margin: 20px;*/
+    
+    background-image: url('Bahamas-general.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
   }
   
   h1 {
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   div {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
   
   label {
