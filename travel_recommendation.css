@@ -7,10 +7,16 @@
 }
 nav {
     background-color: #f0f0f0;
-    padding: 10px 25px; /* Reduced padding to decrease height */
+    height: 60px; /* Set a fixed height for the navbar */
+    padding: 0 25px; /* No padding top or bottom */
     display: flex;
-    align-items: center; /* Vertically centers items */
+    align-items: center; /* Vertically center items */
     justify-content: space-between;
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 nav h1 {
@@ -21,14 +27,16 @@ nav h1 {
 }
 
 .nav-links {
-    flex: 1;
+    position: absolute; /* Position links in the center */
+    left: 50%; /* Move the start point to the center */
+    transform: translateX(-50%); /* Offset by 50% of its width to make it truly centered */
     display: flex;
     justify-content: center;
-    align-items: center; /* Keeps links vertically centered */
+    align-items: center;
     list-style: none;
-    padding: 0; /* No extra padding */
     margin: 0;
-    gap: 15px; /* Slightly reduce gap if necessary */
+    gap: 15px; /* Adjust as needed */
+
 }
 
 .nav-links li a {
