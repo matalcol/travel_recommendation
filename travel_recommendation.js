@@ -10,17 +10,25 @@ function searchCondition() {
         .then(response => response.json())
         .then(data => {
             let recommendations = [];
-            
-            // Filter based on keyword
+
+            // Check if input is a keyword
             if (input === 'beach') {
-                recommendations = data.beaches.slice(0, 2); // Get first 2 beach recommendations
+                recommendations = data.beaches; // Get only first 2 beach recommendations use .slice(0, 2)
             } else if (input === 'temple') {
-                recommendations = data.temples.slice(0, 2); // Get first 2 temple recommendations
+                recommendations = data.temples; // Get first 2 temple recommendations use .slice(0, 2)
             } else if (input === 'country') {
-                recommendations = data.countries.flatMap(country => country.cities).slice(0, 2); // Get first 2 cities from all countries
+                recommendations = data.countries.flatMap(country => country.cities); // Get first 2 cities use .slice(0, 2)
             } else {
-                resultDiv.innerHTML = '<p>Please enter a valid keyword: beach, temple, or country.</p>';
-                return;
+                // If not a keyword, search for a specific city
+                const cities = data.countries.flatMap(country => country.cities); // Flatten all cities into one array
+                recommendations = cities.filter(city => city.name.toLowerCase().includes(input));
+
+                // Check other categories (beaches and temples) for specific matches
+                if (recommendations.length === 0) {
+                    const temples = data.temples.filter(temple => temple.name.toLowerCase().includes(input));
+                    const beaches = data.beaches.filter(beach => beach.name.toLowerCase().includes(input));
+                    recommendations = [...temples, ...beaches];
+                }
             }
 
             // Display recommendations
@@ -35,7 +43,7 @@ function searchCondition() {
                     `;
                 });
             } else {
-                resultDiv.innerHTML = '<p>No recommendations found for this category.</p>';
+                resultDiv.innerHTML = '<p>No results found. Please try a different city or use keyword: beach, temple, or country.</p>';
             }
         })
         .catch(error => {
