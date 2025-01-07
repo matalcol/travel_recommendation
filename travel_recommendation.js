@@ -12,7 +12,6 @@ function searchCondition() {
         return; // Stop execution if input is blank
     }
 
-    
     fetch('travel_recommendation_api.json') // Fetch JSON data
         .then(response => response.json())
         .then(data => {
