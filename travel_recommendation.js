@@ -6,6 +6,13 @@ function searchCondition() {
     const resultDiv = document.getElementById('result'); // The div where the result will be displayed
     resultDiv.innerHTML = ''; // Clear previous results
 
+    // Check if input is blank
+    if (input === '') {
+        resultDiv.innerHTML = '<p>Please enter a search term.</p>';
+        return; // Stop execution if input is blank
+    }
+
+    
     fetch('travel_recommendation_api.json') // Fetch JSON data
         .then(response => response.json())
         .then(data => {
